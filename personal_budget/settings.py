@@ -76,10 +76,10 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'personal_budget.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
+import dj_database_url
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -87,6 +87,9 @@ DATABASES = {
     }
 }
 
+
+if not DEBUG:
+    DATABASES['default'] = dj_database_url.config('DATABASE_URL')
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
