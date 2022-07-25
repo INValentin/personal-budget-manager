@@ -1,0 +1,15 @@
+{% extends 'layout.html' %}
+
+{% block title %}Update Expense{% endblock title %}\
+{% block content %}
+
+<form action="{% url 'expense_update' expense.id %}" method="post">
+    <h2 class="form-header">Update Expense "{{expense.expense_name}}"</h2>
+    <div class="font-bold mb-2 text-sm">
+        Back to <a class="link text-blue-400" href="{% url 'budget_detail' expense.budget.id %}">{{expense.budget.budget_name}}</a>
+    </div>
+    {% csrf_token %}
+    {{form.as_p}}
+    <button type="submit">Confirm Update</button>
+</form>
+{% endblock content %}

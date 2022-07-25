@@ -1,0 +1,14 @@
+{% extends 'layout.html' %}
+{% block title %}Delete Expense{% endblock title %}  
+{% block content %}
+<form action="{% url 'expense_delete' expense.id %}" method="post" class="shadow-lg mt-4 border border-gray-300/75">
+    <a href="{% url 'budget_detail' expense.budget.id %}" class="link text-blue-400 mb-2 underline underline-offset-2">GO BACK - {{expense.budget.budget_name}}</a>
+    {% csrf_token %}
+    <p class="text-xl mt-2 flex w-full flex-wrap">
+        <span class="inline-block w-fit">Permanently <b>delete</b> expense </span>
+        <span class="font-bold w-fit inline-block underline underline-offset-2 text-gray-600">{{expense.expense_name}}? </span>
+    </p>
+    {% comment %} <a href="{% url 'budget_detail' expense.budget.id %}" class="page-link"></a> {% endcomment %}
+    <button class="btn p-2 mt-4 mb-2 capitalize px-3 bg-red-300 hover:bg-red-400">Confirm delete ?</button>
+</form>
+{% endblock content %}

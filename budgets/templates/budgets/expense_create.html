@@ -1,0 +1,14 @@
+{% extends 'layout.html' %}
+{% block title %}Add Expense{% endblock title %}
+{% block content %}
+
+<form action="{% url 'expense_create' budget.id %}" method="post">
+    
+    <h2 class="form-header">Add Expense to <a href="{% url 'budget_detail' budget.id %}" class="link text-blue-400">{{budget.budget_name}} </a></h2>
+    {% csrf_token %}
+    <input type="hidden" name="budget_id" value="{{budget.id}}">
+    {{form.as_p}}
+    <button type="submit">Add new expense</button>
+</form>
+
+{% endblock content %}

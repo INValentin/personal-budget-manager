@@ -1,0 +1,25 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login into Account</title>
+    <link rel="stylesheet" href="{% static 'dist/css/main.css' %}">
+</head>
+<body>
+    <form action="{% url 'login' %}" method="post" class="max-w-sm">
+        <h2 class="text-3xl font-bold my-4 text-center">Login</h2>
+        {% csrf_token %}
+        {{form.as_p}}
+        <p class="items-center">
+            <button type="submit" class="">Login To You Account</button>
+        </p>
+        <p class="items-center">
+            <a class="link text-blue-400" href="{% url 'create-account' %}">Create an account instead!</a>
+        </p>
+    </form>
+</body>
+</html>

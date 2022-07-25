@@ -1,0 +1,17 @@
+{% extends 'layout.html' %}
+
+{% block title %}Delete Budget{% endblock title %}
+{% block content %}
+<form action="{% url 'budget_delete' budget.id %}" method="post" class="shadow-lg mt-4 border border-gray-300/75">
+        {% csrf_token %}
+        <p class="text-xl flex flex-wrap">
+            <span>Do you want to delete budget </s            pan>
+            <a href="{% url 'budget_detail' budget.id %}" class="link text-blue-400">
+                {{budget.budget_name}}
+            </a>
+             and all it's <strong class="font-bold underline">expenses</strong>?
+        </p>
+        <button class="btn p-2 mt-4 mb-2 capitalize px-3 bg-red-300 hover:bg-red-400">Confirm delete ?</button>
+    </form>
+
+{% endblock content %}

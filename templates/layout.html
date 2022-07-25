@@ -1,0 +1,49 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'dist/css/main.css' %}">
+    <title>BudgetGram - {% block title %}{% endblock title %}</title>
+</head>
+<body class="min-h-screen flex flex-col">
+    <header class="bg-gray-600">
+        <menu class="md:max-w-4xl flex container p-2 sm:px-1 items-center  justify-between gap-3  text-gray-100">
+            <a href="{% url 'home' %}" class="font-extrabold text-white text-2xl link">BudgetGram</a>
+            <ul class="md:inline-block hidden">
+                <li><a href="{% url 'budget_create' %}" class="link">New Budget?</a></li>
+            </ul>
+            {% if user.is_authenticated %}
+                <a href="{% url 'logout' %}" class="btn border">Logout</a>
+            {% endif %}
+        </menu>
+    </header>
+    <main class="flex-1 container p-2 md:max-w-4xl">
+        {% block content %}
+        <h1>Welcome to BudgetGram!</h1>
+        {% endblock content %}
+    </main>
+    <footer class="bg-gray-600 mt-2 border-gray-500 border-t-2 min-h-40 px-2 py-4">
+        <div class="container text-gray-100 md:max-w-4xl">
+            <div class="grid md:gap-40 grid-cols-1 md:grid-cols-2">
+                <div>
+
+                    <div class="font-bold text-2xl text-white font-m  my-2">Easily Create Budgets to manage your funds!</div>
+                    <div>This a very simple yet useful, and reliable way to manage your personal, or small scale budgets. I recommed searching for something more sophisticated for enterprise level budgets. Thank you!</div>
+                    
+                </div>
+                <div class="flex flex-col">
+                    <h2 class="text-xl my-2 font-bold">Menu</h2>            
+                    <a href="{% url 'budget_create' %}" class="link">Create a New Budget</a>
+                    <a href="{% url 'home' %}" class="link">See all budgtes</a>
+                    <a draggable="false" href="email:ishimwevalentin3@gmail.com" class="btn max-w-fit selection:text-gray-50 selection:bg-yellow-500">Email: ishimwevalentin3@gmail.com</a>
+                    {% comment %} <a href="call:+250786416173" class="btn link">Call: +250786416173</a> {% endcomment %}
+                </div>
+                </div>
+            <p class="text-center font-mono bg-black mt-2">&copy; Valentin ISHIMWE, 2022.</p>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,35 @@
+{% extends 'layout.html' %}
+
+{% block title %}My Budgets{% endblock title %}
+
+    {% block content %}
+    <h2 class="text-2xl font-bold my-2 mt-4">Budget List</h2>
+    <a class="btn border mt-4 border-gray-400"href="{% url 'budget_create' %}">Create a new budget</a>
+    
+    <div class="mt-4 grid md:grid-cols-2 gap-2 grid-cols-1">
+        {% for budget in budget_list %}
+        <div class="border border-gray-400 p-2 rounded-md max-w-md">
+            <p class="text-xl font-bold text-gray-700 hover:text-gray-900 mb-2">
+                <a href="{% url 'budget_detail' budget.id %}">
+                    {{budget.budget_name}}
+                </a>
+            </p>
+            <p class="text-justify text-sm">{{ budget.description|slice:80}}</p>
+
+            <p class="flex flex-wrap-reverse text-md my-2 text-start justify-between  font-thin ">
+                <span>
+                    Start Date: {{budget.start_date}}
+                </span>
+                <span>
+                    End date: {{budget.end_date}}
+                </span>
+            </p>
+            <button class="btn border-2 border-gray-500 bg-red-300 hover:bg-red-400"><a href="{% url 'budget_delete' budget.id %}">Delete budget</a></button>
+        </div>
+        {% empty %}
+        <p class="text-gray-700">You don't have any budgets yet. Create one from the above button!</p>
+        {% endfor %}
+    </div>
+    {% endblock %}
+{% comment %} </body>
+</html> {% endcomment %}

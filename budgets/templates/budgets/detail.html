@@ -1,0 +1,40 @@
+{% extends 'layout.html' %}
+{% load mathfilters %}
+{% block title %}{{budget.budget_name}}{% endblock title %}
+{% block content %}
+<div class="border-b-2 mb-4">
+        <h2 class="text-2xl font-bold my-2 mt-4">{{budget.budget_name}}</h2>
+        <p class="font-md text-start mb-4">{{budget.description}}</p>
+        <p class="font-thin">Duration: {{budget.start_date}} - {{ budget.end_date }}</p>
+        <p class="font-thin">Remaining: {{ budget.end_date|timeuntil }}</p>
+        <div class="mb-2"></div>
+    </div>
+
+    <a href="{% url 'expense_create' budget.id %}" class="btn mb-4">Add new Expense</a>
+    <h2 class="text-lg font-semibold my-2">All budget expenses</h2>
+    <h3 class="text-ms text-justify mb-4 font-semibold text-blue-400 flex flex-wrap">
+        <span class="mr-2">
+            Overall Total of 
+        </span>
+        <span class="font-mono text-red-400 font-ultrabold text-xl underline-offset-4 underline under border border-red-300 px-2 rounded">
+        {{all_total}} RWF
+    </span> 
+</h3>
+    <div class="grid sm:grid-cols-2 gap-1">
+        {% for expense in budget.expenses.all %}
+        <div class="border border-gray-400 p-2 rounded-md">
+            <span class='text-lg font-bold'>{{expense.expense_name}}</span>
+            <div class="text-md font-mono text-gray-600 my-2">Quantity of <u class="text-justify font-bold text-gray-700 underline-offset-2">{{expense.quantity}}</u> At <u class="text-justify font-bold text-gray-700 underline-offset-2">{{expense.unit_price}} RWF</u> for
+                <u class="text-justify font-bold text-gray-700 underline-offset-2">{{expense.frequency}}</u> {% if expense.frequency == 1 %} time {%else%} times{%endif%}.</span>
+            <span class="block mt-2">Total of <u class="text-justify font-bold border-y-2 no-underline border-gray-700 text-gray-700 "><b>{{expense.frequency|mul:expense.quantity|mul:expense.unit_price}} RWF.</b></u></div>
+           <div class="exp-buttons">
+               <button class="btn"><a class="update-link" href="{% url 'expense_update' expense.id %}">Update</a></button>
+               <button class="btn bg-red-300 hover:bg-red-400"><a class="delete-link" href="{% url 'expense_delete' expense.id %}">Delete</a></button>
+            </div>
+        </div>
+        {% empty %}
+        <p class="text-gray-700">No Expenses In this budget!</p>
+        {% endfor %}
+    </div>
+
+{% endblock content %}    
