@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'accounts',
     'budgets',
     'mathfilters',
-    'django.contrib.admin',
+    # 'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
