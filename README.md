@@ -1,6 +1,7 @@
-# This is a personal budget management web application
+# This is a personal budget management web application (BudgetGram)
 
  - It's supposed to be simple, and easy to use
+ - You can find it live here https://budgetgram.herokuapp.com
 
 ## Idea
  - I developed this project to solve problems with my personal expenses
@@ -26,3 +27,4 @@
 
 ## Contact
  - Insagram: @___4valentin
+
