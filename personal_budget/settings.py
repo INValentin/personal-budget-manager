@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-v*!(d8b)%5g%rm0*q_xmqv#7owx+-t&^fxrijjv+cul=ev)5f)
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["localhost","personal-budgets.herokuapp.com"]
+ALLOWED_HOSTS = ["localhost","budgetgram.herokuapp.com/"]
 # DJANGO_ALLOW_ASYNC_UNSAFE=1
 
 # Application definition
